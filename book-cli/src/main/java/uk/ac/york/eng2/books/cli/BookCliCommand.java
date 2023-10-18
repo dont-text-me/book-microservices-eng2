@@ -15,6 +15,7 @@ public class BookCliCommand implements Runnable {
     @Option(names = {"-v", "--verbose"}, description = "...")
     boolean verbose;
 
+
     public static void main(String[] args) throws Exception {
         PicocliRunner.run(BookCliCommand.class, args);
     }
