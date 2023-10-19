@@ -22,10 +22,7 @@ public class AddBookCommand implements Runnable {
 
   @Override
   public void run() {
-    BookDTO newBook = new BookDTO();
-
-    newBook.setTitle(title);
-    newBook.setYear(year);
+    BookDTO newBook = new BookDTO(title, year);
 
     HttpResponse<Void> result = client.add(newBook);
     if (result.code() == HttpStatus.CREATED.getCode()) {

@@ -1,7 +1,8 @@
 plugins {
-    id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("io.micronaut.application") version "3.7.10"
-    id("io.micronaut.test-resources") version "3.7.10"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("io.micronaut.application") version "4.0.4"
+    id("io.micronaut.aot") version "4.0.4"
+    id("io.micronaut.test-resources") version "4.1.1"
     id("com.diffplug.spotless") version "6.21.0"
 }
 
@@ -25,6 +26,7 @@ dependencies {
     implementation("jakarta.annotation:jakarta.annotation-api")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
+    runtimeOnly("org.yaml:snakeyaml")
 }
 
 
@@ -32,8 +34,8 @@ application {
     mainClass.set("uk.ac.york.eng2.books.Application")
 }
 java {
-    sourceCompatibility = JavaVersion.toVersion("11")
-    targetCompatibility = JavaVersion.toVersion("11")
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
 }
 
 spotless{

@@ -29,9 +29,7 @@ public class UpdateBookCommand implements Runnable {
 
   @Override
   public void run() {
-    BookDTO bookDetails = new BookDTO();
-    bookDetails.setYear(year);
-    bookDetails.setTitle(title);
+    BookDTO bookDetails = new BookDTO(title, year);
 
     HttpResponse<Void> result = client.updateBook(id, bookDetails);
 
