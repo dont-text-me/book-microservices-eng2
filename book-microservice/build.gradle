@@ -1,63 +1,67 @@
 plugins {
-    id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.micronaut.application") version "4.0.4"
-    id("io.micronaut.aot") version "4.0.4"
-    id("io.micronaut.test-resources") version "4.1.1"
-    id("com.diffplug.spotless") version "6.21.0"
+	id("com.github.johnrengelman.shadow") version "8.1.1"
+	id("io.micronaut.application") version "4.0.4"
+	id("io.micronaut.aot") version "4.0.4"
+	id("io.micronaut.test-resources") version "4.1.1"
+	id("com.diffplug.spotless") version "6.21.0"
 }
 
 version = "0.1"
 group = "uk.ac.york.eng2.books"
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    annotationProcessor("io.micronaut.data:micronaut-data-processor")
-    annotationProcessor("io.micronaut:micronaut-http-validation")
-    annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
-    implementation("io.micronaut:micronaut-http-client")
-    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
-    implementation("io.micronaut.kafka:micronaut-kafka")
-    implementation("io.micronaut.kafka:micronaut-kafka-streams")
-    implementation("io.micronaut.serde:micronaut-serde-jackson")
-    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
-    implementation("jakarta.annotation:jakarta.annotation-api")
-    runtimeOnly("ch.qos.logback:logback-classic")
-    runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
-    runtimeOnly("org.yaml:snakeyaml")
+	annotationProcessor("io.micronaut.data:micronaut-data-processor")
+	annotationProcessor("io.micronaut:micronaut-http-validation")
+	annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
+	implementation("io.micronaut:micronaut-http-client")
+	implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+	implementation("io.micronaut.kafka:micronaut-kafka")
+	implementation("io.micronaut.kafka:micronaut-kafka-streams")
+	implementation("io.micronaut.serde:micronaut-serde-jackson")
+	implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+	implementation("jakarta.annotation:jakarta.annotation-api")
+	runtimeOnly("ch.qos.logback:logback-classic")
+	runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
+	runtimeOnly("org.yaml:snakeyaml")
 }
 
 
 application {
-    mainClass.set("uk.ac.york.eng2.books.Application")
+	mainClass.set("uk.ac.york.eng2.books.Application")
 }
 java {
-    sourceCompatibility = JavaVersion.toVersion("17")
-    targetCompatibility = JavaVersion.toVersion("17")
+	sourceCompatibility = JavaVersion.toVersion("17")
+	targetCompatibility = JavaVersion.toVersion("17")
 }
 
 spotless{
-    java{
-        removeUnusedImports()
-        importOrder()
-        googleJavaFormat()
-    }
+	java{
+		removeUnusedImports()
+		importOrder()
+		googleJavaFormat()
+	}
+	groovyGradle {
+		target '*.gradle'
+		greclipse()
+	}
 }
 
 
 graalvmNative.toolchainDetection = false
 micronaut {
-    runtime("netty")
-    testRuntime("junit5")
-    processing {
-        incremental(true)
-        annotations("uk.ac.york.eng2.books.*")
-    }
-    testResources {
-        sharedServer = true
-    }
+	runtime("netty")
+	testRuntime("junit5")
+	processing {
+		incremental(true)
+		annotations("uk.ac.york.eng2.books.*")
+	}
+	testResources {
+		sharedServer = true
+	}
 }
 
 
