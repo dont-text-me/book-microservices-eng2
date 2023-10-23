@@ -31,6 +31,9 @@ application {
 	mainClass.set("uk.ac.york.eng2.books.Application")
 }
 
+jar{
+	exclude("logback.xml")
+}
 
 graalvmNative.toolchainDetection = false
 micronaut {
