@@ -1,0 +1,2 @@
+rootProject.name = 'book-microservices'
+include 'book-cli', 'book-microservice'

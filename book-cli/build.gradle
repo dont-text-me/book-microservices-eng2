@@ -1,19 +1,15 @@
 plugins {
-	id("com.github.johnrengelman.shadow") version "8.1.1"
-	id("io.micronaut.application") version "4.0.4"
-	id("com.diffplug.spotless") version "6.21.0"
+	id("io.micronaut.application") version "4.1.2"
 }
 
 version = "0.1"
 group = "uk.ac.york.eng2.books.cli"
 
-repositories {
-	mavenCentral()
-}
 
 dependencies {
 	annotationProcessor("info.picocli:picocli-codegen")
 	annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
+	implementation(project(":book-microservice"))
 	implementation("info.picocli:picocli")
 	implementation("io.micronaut.picocli:micronaut-picocli")
 	implementation("io.micronaut.serde:micronaut-serde-jackson")
@@ -23,33 +19,22 @@ dependencies {
 	runtimeOnly("org.yaml:snakeyaml")
 }
 
+repositories{
+	mavenCentral()
+}
+
 
 application {
 	mainClass.set("uk.ac.york.eng2.books.cli.BookCliCommand")
 }
-java {
-	sourceCompatibility = JavaVersion.toVersion("17")
-	targetCompatibility = JavaVersion.toVersion("17")
-}
+
+graalvmNative.toolchainDetection = false
 
 micronaut {
 	testRuntime("junit5")
 	processing {
 		incremental(true)
 		annotations("uk.ac.york.eng2.books.cli.*")
-	}
-}
-
-spotless{
-	java{
-		removeUnusedImports()
-		importOrder()
-		googleJavaFormat()
-	}
-
-	groovyGradle {
-		target '*.gradle'
-		greclipse()
 	}
 }
 
