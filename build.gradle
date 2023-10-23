@@ -1,0 +1,32 @@
+plugins{
+	id("com.github.johnrengelman.shadow") version "8.1.1"
+	id("io.micronaut.application") version "4.1.2" apply false
+	id("io.micronaut.test-resources") version "4.1.1" apply false
+	id("io.micronaut.aot") version "4.0.4" apply false
+	id("com.diffplug.spotless") version "6.21.0"
+	id 'java'
+}
+repositories {
+	mavenCentral()
+}
+
+
+allprojects {
+	java{
+		sourceCompatibility = JavaVersion.toVersion("17")
+		targetCompatibility = JavaVersion.toVersion("17")
+	}
+}
+
+spotless{
+	java{
+		removeUnusedImports()
+		importOrder()
+		googleJavaFormat()
+	}
+
+	groovyGradle {
+		target '*.gradle'
+		greclipse()
+	}
+}

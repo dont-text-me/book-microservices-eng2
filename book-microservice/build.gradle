@@ -1,17 +1,14 @@
 plugins {
-	id("com.github.johnrengelman.shadow") version "8.1.1"
-	id("io.micronaut.application") version "4.0.4"
+	id("io.micronaut.application") version "4.1.2"
 	id("io.micronaut.aot") version "4.0.4"
 	id("io.micronaut.test-resources") version "4.1.1"
-	id("com.diffplug.spotless") version "6.21.0"
+}
+repositories{
+	mavenCentral()
 }
 
 version = "0.1"
 group = "uk.ac.york.eng2.books"
-
-repositories {
-	mavenCentral()
-}
 
 dependencies {
 	annotationProcessor("io.micronaut.data:micronaut-data-processor")
@@ -32,22 +29,6 @@ dependencies {
 
 application {
 	mainClass.set("uk.ac.york.eng2.books.Application")
-}
-java {
-	sourceCompatibility = JavaVersion.toVersion("17")
-	targetCompatibility = JavaVersion.toVersion("17")
-}
-
-spotless{
-	java{
-		removeUnusedImports()
-		importOrder()
-		googleJavaFormat()
-	}
-	groovyGradle {
-		target '*.gradle'
-		greclipse()
-	}
 }
 
 
