@@ -9,17 +9,17 @@ import uk.ac.york.eng2.books.dto.UserDTO;
 @Client("http://localhost:8080/users")
 public interface UsersClient {
   @Get("/")
-  public Iterable<User> list();
+  Iterable<User> list();
 
   @Get("/{id}")
-  public User getUser(long id);
+  User getUser(long id);
 
   @Post("/")
-  public HttpResponse<Void> add(@Body UserDTO userDetails);
+  HttpResponse<Void> add(@Body UserDTO userDetails);
 
   @Put("/{id}")
-  public HttpResponse<Void> updateUser(long id, @Body UserDTO userDetails);
+  HttpResponse<Void> updateUser(long id, @Body UserDTO userDetails);
 
   @Delete("/{id}")
-  public HttpResponse<Void> deleteUser(long id);
+  HttpResponse<Void> deleteUser(long id);
 }
