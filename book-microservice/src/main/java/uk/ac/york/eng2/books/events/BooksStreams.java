@@ -28,14 +28,18 @@ public class BooksStreams {
     KStream<WindowedIdentifier, Long> stream =
         builder.stream(
                 TOPIC_BOOK_READ, Consumed.with(Serdes.Long(), serdeRegistry.getSerde(Book.class)))
-            .selectKey((k, v) -> v.getId())
+            .selectKey((userId, book) -> book.getId())
             .groupByKey(Grouped.with(Serdes.Long(), serdeRegistry.getSerde(Book.class)))
             .windowedBy(
                 TimeWindows.ofSizeWithNoGrace(Duration.ofHours(24)).advanceBy(Duration.ofHours(24)))
             .count()
             .toStream()
             .selectKey(
-                (k, v) -> new WindowedIdentifier(k.key(), k.window().start(), k.window().end()));
+                (windowedBookId, readerCount) ->
+                    new WindowedIdentifier(
+                        windowedBookId.key(),
+                        windowedBookId.window().start(),
+                        windowedBookId.window().end()));
 
     stream.to(
         TOPIC_BOOK_READ_BY_DAY,
