@@ -9,6 +9,7 @@ import java.util.Objects;
 import uk.ac.york.eng2.books.domain.Book;
 import uk.ac.york.eng2.books.domain.User;
 import uk.ac.york.eng2.books.dto.BookDTO;
+import uk.ac.york.eng2.books.events.BooksProducer;
 import uk.ac.york.eng2.books.repositories.BooksRepository;
 import uk.ac.york.eng2.books.repositories.UsersRepository;
 
@@ -16,6 +17,7 @@ import uk.ac.york.eng2.books.repositories.UsersRepository;
 public class BooksController {
   @Inject private BooksRepository repo;
   @Inject private UsersRepository userRepo;
+  @Inject private BooksProducer booksProducer;
 
   @Get("/")
   public Iterable<Book> list() {
@@ -54,7 +56,9 @@ public class BooksController {
     if (userResult == null || bookResult == null) {
       return HttpResponse.notFound();
     }
-    bookResult.addReader(userResult);
+    if (bookResult.addReader(userResult)) {
+      booksProducer.readBook(id, bookResult);
+    }
     repo.update(bookResult);
     return HttpResponse.ok();
   }

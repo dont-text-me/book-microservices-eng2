@@ -23,5 +23,8 @@ netty:
     allocator:
       max-order: 3
 kafka:
-  enabled: false
-
+  bootstrap:
+    servers:
+    - localhost:9094
+    - localhost:9095
+    - localhost:9096
