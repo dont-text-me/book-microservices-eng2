@@ -30,12 +30,12 @@ public class Book {
     this.readers = readers;
   }
 
-  public void addReader(User reader) {
-    this.readers.add(reader);
+  public boolean addReader(User reader) {
+    return this.readers.add(reader);
   }
 
-  public void removeReader(User reader) {
-    this.readers.remove(reader);
+  public boolean removeReader(User reader) {
+    return this.readers.remove(reader);
   }
 
   public void setId(Long id) {
@@ -60,10 +60,6 @@ public class Book {
 
   @Override
   public String toString() {
-    return "Book{" +
-            "id=" + id +
-            ", title='" + title + '\'' +
-            ", year=" + year +
-            '}';
+    return "Book{" + "id=" + id + ", title='" + title + '\'' + ", year=" + year + '}';
   }
 }

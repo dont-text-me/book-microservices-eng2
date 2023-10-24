@@ -20,13 +20,14 @@ allprojects {
 
 spotless{
 	java{
+		target '**/**.java'
 		removeUnusedImports()
 		importOrder()
 		googleJavaFormat()
 	}
 
 	groovyGradle {
-		target '*.gradle'
+		target '**/**.gradle'
 		greclipse()
 	}
 }
