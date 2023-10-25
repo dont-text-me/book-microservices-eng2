@@ -5,14 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import io.micronaut.configuration.picocli.PicocliRunner;
 import io.micronaut.context.ApplicationContext;
 import io.micronaut.context.env.Environment;
-import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.ac.york.eng2.books.cli.commands.book.AddBookCommand;
 
-@MicronautTest
 public class AddBookCommandTest {
   private final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
