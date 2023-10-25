@@ -7,7 +7,7 @@ import uk.ac.york.eng2.books.domain.Book;
 import uk.ac.york.eng2.books.domain.User;
 import uk.ac.york.eng2.books.dto.BookDTO;
 
-@Client("http://localhost:8080/books")
+@Client("${books.url:`http://localhost:8080/books`}")
 public interface BooksClient {
   @Get("/")
   Iterable<Book> list();

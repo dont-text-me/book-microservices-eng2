@@ -2,6 +2,7 @@ plugins {
 	id("io.micronaut.application") version "4.1.2"
 	id("io.micronaut.aot") version "4.0.4"
 	id("io.micronaut.test-resources") version "4.1.1"
+	id("jacoco")
 }
 repositories{
 	mavenCentral()
@@ -24,6 +25,9 @@ dependencies {
 	runtimeOnly("ch.qos.logback:logback-classic")
 	runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 	runtimeOnly("org.yaml:snakeyaml")
+
+	testImplementation("org.awaitility:awaitility:4.2.0")
+	testImplementation("org.apache.kafka:kafka-streams-test-utils:3.6.0")
 }
 
 
@@ -48,5 +52,12 @@ micronaut {
 	}
 }
 
+test{
+	finalizedBy jacocoTestReport
+}
+
+jacocoTestReport{
+	dependsOn test
+}
 
 

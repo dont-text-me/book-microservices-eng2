@@ -57,7 +57,7 @@ public class BooksController {
       return HttpResponse.notFound();
     }
     if (bookResult.addReader(userResult)) {
-      booksProducer.readBook(id, bookResult);
+      booksProducer.readBook(readerId, bookResult);
     }
     repo.update(bookResult);
     return HttpResponse.ok();
