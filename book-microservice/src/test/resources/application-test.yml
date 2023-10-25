@@ -4,3 +4,5 @@ jpa:
       hibernate:
         hbm2ddl:
           auto: create-drop
+books:
+  url: /books
