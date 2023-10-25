@@ -2,7 +2,6 @@ package uk.ac.york.eng2.books.controllers;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
-import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
 import uk.ac.york.eng2.books.domain.Book;
 import uk.ac.york.eng2.books.domain.User;
