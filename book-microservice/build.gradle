@@ -2,6 +2,7 @@ plugins {
 	id("io.micronaut.application") version "4.1.2"
 	id("io.micronaut.aot") version "4.0.4"
 	id("io.micronaut.test-resources") version "4.1.1"
+	id("jacoco")
 }
 repositories{
 	mavenCentral()
@@ -24,6 +25,10 @@ dependencies {
 	runtimeOnly("ch.qos.logback:logback-classic")
 	runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 	runtimeOnly("org.yaml:snakeyaml")
+
+	testImplementation("org.awaitility:awaitility:4.2.0")
+	testImplementation("org.apache.kafka:kafka-streams-test-utils:3.6.0")
+	testImplementation("io.micronaut:micronaut-http-server-netty")
 }
 
 
@@ -35,6 +40,16 @@ jar{
 	exclude("logback.xml")
 }
 
+run{
+	systemProperties([
+		'datasources.default.url': 'jdbc:mariadb://localhost:3306/books',
+		'datasources.default.username': 'todo',
+		'datasources.default.password': 'todosecret',
+		'kafka.bootstrap.servers': 'localhost:9094,localhost:9095,localhost:9096',
+
+	])
+}
+
 graalvmNative.toolchainDetection = false
 micronaut {
 	runtime("netty")
@@ -43,10 +58,14 @@ micronaut {
 		incremental(true)
 		annotations("uk.ac.york.eng2.books.*")
 	}
-	testResources {
-		sharedServer = true
-	}
 }
 
+test{
+	finalizedBy jacocoTestReport
+}
+
+jacocoTestReport{
+	dependsOn test
+}
 
 

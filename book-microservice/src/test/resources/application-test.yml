@@ -4,3 +4,13 @@ jpa:
       hibernate:
         hbm2ddl:
           auto: create-drop
+books:
+  url: /books
+
+kafka:
+  default:
+    embedded:
+      enabled: true
+  streams:
+    default:
+      start-kafka-streams: true
