@@ -6,3 +6,20 @@ jpa:
           auto: create-drop
 books:
   url: /books
+
+datasources:
+  default:
+    driver-class-name: org.mariadb.jdbc.Driver
+    db-type: mariadb
+    dialect: MYSQL
+
+kafka:
+  enabled: false
+  embedded:
+    enabled: true
+    topics:
+      - book-read
+      - book-read-by-day
+  streams:
+    default:
+      start-kafka-streams: true

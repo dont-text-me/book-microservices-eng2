@@ -47,9 +47,6 @@ micronaut {
 		incremental(true)
 		annotations("uk.ac.york.eng2.books.*")
 	}
-	testResources {
-		sharedServer = true
-	}
 }
 
 test{

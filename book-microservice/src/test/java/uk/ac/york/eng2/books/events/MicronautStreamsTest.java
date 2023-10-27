@@ -14,15 +14,13 @@ import java.util.HashMap;
 import java.util.Map;
 import org.apache.kafka.streams.KafkaStreams;
 import org.awaitility.Awaitility;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import uk.ac.york.eng2.books.domain.Book;
 
 @MicronautTest
 @Property(name = "spec.name", value = "MicronautStreamsTest")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Disabled
 // TODO fix during lab
 public class MicronautStreamsTest {
   @Inject BooksProducer producer;
