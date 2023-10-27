@@ -6,9 +6,6 @@ datasources:
     driver-class-name: org.mariadb.jdbc.Driver
     db-type: mariadb
     dialect: MYSQL
-    url: jdbc:mariadb://localhost:3306/books
-    username: todo
-    password: todosecret
 jpa:
   default:
     entity-scan:
@@ -23,9 +20,4 @@ netty:
     allocator:
       max-order: 3
 kafka:
-  default:
-    bootstrap:
-      servers:
-      - localhost:9094
-      - localhost:9095
-      - localhost:9096
+  enabled: true

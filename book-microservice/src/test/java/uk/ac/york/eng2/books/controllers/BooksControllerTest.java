@@ -90,6 +90,6 @@ public class BooksControllerTest {
 
     client.updateReaders(newBook.getId(), newUser.getId());
 
-    assertTrue(readBooks.containsKey(newBook.getId()));
+    assertTrue(readBooks.containsKey(newUser.getId()));
   }
 }

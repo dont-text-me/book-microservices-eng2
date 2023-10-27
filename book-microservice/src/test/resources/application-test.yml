@@ -7,12 +7,6 @@ jpa:
 books:
   url: /books
 
-datasources:
-  default:
-    driver-class-name: org.mariadb.jdbc.Driver
-    db-type: mariadb
-    dialect: MYSQL
-
 kafka:
   enabled: false
   embedded:

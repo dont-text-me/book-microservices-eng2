@@ -28,6 +28,7 @@ dependencies {
 
 	testImplementation("org.awaitility:awaitility:4.2.0")
 	testImplementation("org.apache.kafka:kafka-streams-test-utils:3.6.0")
+	testImplementation("io.micronaut:micronaut-http-server-netty")
 }
 
 
@@ -37,6 +38,16 @@ application {
 
 jar{
 	exclude("logback.xml")
+}
+
+run{
+	systemProperties([
+		'datasources.default.url': 'jdbc:mariadb://localhost:3306/books',
+		'datasources.default.username': 'todo',
+		'datasources.default.password': 'todosecret',
+		'kafka.bootstrap.servers': 'localhost:9094,localhost:9095,localhost:9096',
+
+	])
 }
 
 graalvmNative.toolchainDetection = false
