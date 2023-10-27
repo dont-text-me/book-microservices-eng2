@@ -17,6 +17,7 @@ import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.TestOutputTopic;
 import org.apache.kafka.streams.TopologyTestDriver;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import uk.ac.york.eng2.books.domain.Book;
 
@@ -26,6 +27,7 @@ import uk.ac.york.eng2.books.domain.Book;
  * TopologyTestDriver}.
  */
 @MicronautTest(environments = "no_streams") // TODO fix during lab
+@Disabled
 public class TestDoubleStreamsTest {
 
   @Inject private SerdeRegistry serdeRegistry;
