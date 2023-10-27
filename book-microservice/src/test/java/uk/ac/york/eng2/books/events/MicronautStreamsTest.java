@@ -20,7 +20,6 @@ import uk.ac.york.eng2.books.domain.Book;
 @MicronautTest
 @Property(name = "spec.name", value = "MicronautStreamsTest")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@Disabled
 // TODO fix during lab
 public class MicronautStreamsTest {
   @Inject BooksProducer producer;

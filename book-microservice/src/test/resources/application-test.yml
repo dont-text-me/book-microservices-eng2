@@ -8,12 +8,9 @@ books:
   url: /books
 
 kafka:
-  enabled: false
-  embedded:
-    enabled: true
-    topics:
-      - book-read
-      - book-read-by-day
+  default:
+    embedded:
+      enabled: true
   streams:
     default:
       start-kafka-streams: true
